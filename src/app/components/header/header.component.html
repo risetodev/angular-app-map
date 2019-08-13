@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    <a
+      *ngFor="let page of routes | slice: 0:2"
+      [routerLink]="page.path"
+      [class.currentPage]="getCurrentPage(page.path)"
+      >{{ page.path }}</a
+    >
+    <a [routerLink]="['/']">Sign out</a>
+  </nav>
+</header>

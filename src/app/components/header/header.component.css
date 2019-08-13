@@ -1,0 +1,29 @@
+header {
+  background-color: #001529;
+  height: 7vh;
+}
+
+nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+a {
+  height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fafafa;
+}
+
+a:hover {
+  background-color: #1890ff;
+}
+
+.currentPage {
+  background-color: #1890ff;
+}
