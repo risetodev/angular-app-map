@@ -1,0 +1,28 @@
+.loginForm {
+  height: 20vh;
+  width: 30vw;
+}
+
+.input {
+  width: 100%;
+}
+
+.submitButton {
+  background-color: forestgreen;
+  color: white;
+  width: 100%;
+  margin-top: 3%;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}

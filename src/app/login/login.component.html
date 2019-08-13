@@ -1,0 +1,42 @@
+<form class="loginForm">
+  <!--Login input-->
+  <mat-form-field class="input">
+    <input matInput placeholder="User" [formControl]="userValidation" />
+    <mat-error *ngIf="userValidation.hasError('pattern')">
+      Please enter a valid login: user
+    </mat-error>
+    <mat-error *ngIf="userValidation.hasError('required')">
+      Login is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <!--End login input-->
+
+  <!--Password input-->
+  <mat-form-field class="input">
+    <input
+      [type]="hidePassword ? 'password' : 'text'"
+      type="password"
+      matInput
+      placeholder="Password"
+      [formControl]="passwordValidation"
+    />
+    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+      <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+    <mat-error *ngIf="passwordValidation.hasError('pattern')">
+      Please enter a valid password: u_se_r
+    </mat-error>
+    <mat-error *ngIf="passwordValidation.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <!--End password input-->
+
+  <button
+    mat-flat-button
+    class="submitButton"
+    [disabled]="userValidation.invalid || passwordValidation.invalid"
+  >
+    Sign in
+  </button>
+</form>
