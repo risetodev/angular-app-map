@@ -1,7 +1,6 @@
-<app-header></app-header>
-<div class="flex-container">
+<app-header *ngIf="isLogged"></app-header>
+<div class="flex-container" [style.height.%]="isLogged ? '90' : '100'">
   <div class="row">
-    <!--    <app-login></app-login>-->
     <router-outlet></router-outlet>
   </div>
 </div>

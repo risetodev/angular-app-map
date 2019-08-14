@@ -6,6 +6,6 @@
       [class.currentPage]="getCurrentPage(page.path)"
       >{{ page.path }}</a
     >
-    <a [routerLink]="['/']">Sign out</a>
+    <a (click)="removeSession('user')">Sign out</a>
   </nav>
 </header>

@@ -37,6 +37,7 @@
     class="submitButton"
     [disabled]="userValidation.invalid || passwordValidation.invalid"
     [routerLink]="['/Map']"
+    (click)="signIn({ loggedIn: true, login: userValidation.value })"
   >
     Sign in
   </button>

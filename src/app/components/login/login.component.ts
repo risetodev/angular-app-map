@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
+import { setAuthentication } from "../../utils/localStorage/localStorage";
 
 @Component({
   selector: "app-login",
@@ -18,4 +19,6 @@ export class LoginComponent {
     Validators.required,
     Validators.pattern("u_se_r")
   ]);
+
+  signIn = setAuthentication;
 }
