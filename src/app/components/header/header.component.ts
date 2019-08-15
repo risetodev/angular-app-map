@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { routes } from "../../Router/app-routing.module";
+import { Component, Input, OnInit } from "@angular/core";
+
 import { deleteSession } from "../../utils/localStorage/localStorage";
+import { routes } from "src/app/Router/routes";
 
 @Component({
   selector: "app-header",

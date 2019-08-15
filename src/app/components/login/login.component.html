@@ -36,8 +36,7 @@
     mat-flat-button
     class="submitButton"
     [disabled]="userValidation.invalid || passwordValidation.invalid"
-    [routerLink]="['/Map']"
-    (click)="signIn({ loggedIn: true, login: userValidation.value })"
+    (click)="signIn()"
   >
     Sign in
   </button>

@@ -4,8 +4,8 @@
       *ngFor="let page of routes | slice: 0:2"
       [routerLink]="page.path"
       [class.currentPage]="getCurrentPage(page.path)"
-      >{{ page.path }}</a
+      >{{ page.path.charAt(0).toUpperCase() + page.path.slice(1) }}</a
     >
-    <a (click)="removeSession('user')">Sign out</a>
+    <a (click)="removeSession()">Sign out</a>
   </nav>
 </header>

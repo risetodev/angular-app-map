@@ -1,6 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, Output } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { setAuthentication } from "../../utils/localStorage/localStorage";
+import { Router } from "@angular/router";
+import { MapComponent } from "../map/map.component";
 
 @Component({
   selector: "app-login",
@@ -20,5 +22,10 @@ export class LoginComponent {
     Validators.pattern("u_se_r")
   ]);
 
-  signIn = setAuthentication;
+  constructor(private router: Router) {}
+
+  signIn = async () => {
+    await setAuthentication({ login: "user", date: new Date() });
+    await this.router.navigate(["/map"]);
+  };
 }
