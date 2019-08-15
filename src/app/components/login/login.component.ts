@@ -27,5 +27,6 @@ export class LoginComponent {
   signIn = async () => {
     await setAuthentication({ login: "user", date: new Date() });
     await this.router.navigate(["/map"]);
+
   };
 }

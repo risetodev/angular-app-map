@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { getAuthentication } from "./utils/localStorage/localStorage";
 
 @Component({
   selector: "app-root",
@@ -6,5 +7,7 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  isLogged = true;
+  showHeader() {
+    return getAuthentication();
+  }
 }

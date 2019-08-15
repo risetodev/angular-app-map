@@ -10,7 +10,6 @@ export class OnlyLoggedInUsersGuard implements CanActivate {
     if (!getAuthentication()) {
       this.router.navigate([""]).then(r => null);
     }
-
     return getAuthentication();
   }
 }
