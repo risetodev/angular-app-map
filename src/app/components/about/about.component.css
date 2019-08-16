@@ -1,0 +1,8 @@
+.about {
+  display: flex;
+}
+
+.aboutDeveloper {
+  width: 60%;
+  margin-right: 5%;
+}

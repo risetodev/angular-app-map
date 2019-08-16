@@ -6,5 +6,9 @@
   justify-content: center;
 }
 .row {
-  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  flex-direction: row;
 }
