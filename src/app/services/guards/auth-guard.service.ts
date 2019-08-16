@@ -4,12 +4,19 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class OnlyLoggedInUsersGuard implements CanActivate {
-  constructor(private router: Router) {}
-
+  constructor(public router: Router) {}
   canActivate() {
     if (!getAuthentication()) {
-      this.router.navigate([""]).then(r => null);
+      //this.router.navigate(["login"]).then(r => null);
+      return false;
     }
-    return getAuthentication();
+    return true;
+  }
+}
+
+@Injectable()
+export class UsersGuard implements CanActivate {
+  canActivate() {
+    return !getAuthentication();
   }
 }

@@ -14,7 +14,7 @@ export class HeaderComponent {
   constructor(private router: Router) {}
   removeSession = async () => {
     await deleteSession();
-    await this.router.navigate([""]);
+    await this.router.navigate(["login"]);
   };
   getCurrentPage = (currentPage: string) => {
     return window.location.href.endsWith(currentPage);

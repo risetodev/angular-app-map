@@ -11,7 +11,10 @@ import { MapComponent } from "./components/map/map.component";
 import { AboutComponent } from "./components/about/about.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { HeaderComponent } from "./components/header/header.component";
-import { OnlyLoggedInUsersGuard } from "./services/guards/auth-guard.service";
+import {
+  OnlyLoggedInUsersGuard,
+  UsersGuard
+} from "./services/guards/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +33,7 @@ import { OnlyLoggedInUsersGuard } from "./services/guards/auth-guard.service";
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [OnlyLoggedInUsersGuard],
+  providers: [OnlyLoggedInUsersGuard, UsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
