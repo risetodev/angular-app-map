@@ -15,6 +15,8 @@ import {
   OnlyLoggedInUsersGuard,
   UsersGuard
 } from "./services/guards/auth-guard.service";
+import { AgmCoreModule } from "@agm/core";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,11 @@ import {
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyAsc_BpmdANMQiWNr6z3KGFp3j3ZBKyHv0"
+    }),
+    HttpClientModule
   ],
   providers: [OnlyLoggedInUsersGuard, UsersGuard],
   bootstrap: [AppComponent]
