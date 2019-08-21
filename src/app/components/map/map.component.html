@@ -1,98 +1,78 @@
 <div class="mapContainer">
   <div class="map">
+    <!--suppress TypeScriptValidateTypes -->
     <agm-map
       [latitude]="currentLocation.lat"
       [longitude]="currentLocation.lng"
-      [zoom]="zoom"
-    ></agm-map>
+      [zoom]="13"
+      (mapClick)="mapClicked($event)"
+    >
+      <!--My location marker-->
+      <agm-marker
+        *ngIf="isMyLocation"
+        [latitude]="currentLocation.lat"
+        [longitude]="currentLocation.lng"
+        [label]="'Current location'"
+      >
+      </agm-marker>
+      <!--End My location marker-->
+
+      <!--Markers of the places>-->
+      <agm-marker *ngIf="isPanelOpenState">
+        <agm-marker
+          *ngFor="let place of marksOfThePlaces"
+          [latitude]="place.location.lat"
+          [longitude]="place.location.lng"
+        >
+        </agm-marker>
+      </agm-marker>
+      <!--End of markers-->
+
+      <!--Custom markers>-->
+      <!--      <agm-marker *ngIf="isPanelOpenState">-->
+      <!--suppress TypeScriptValidateTypes -->
+      <agm-marker
+        *ngFor="let marker of customMarkers"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+        [markerDraggable]="marker.draggable"
+        (dragEnd)="markerDragEnd(marker, $event)"
+      >
+      </agm-marker>
+      <!--      </agm-marker>-->
+      <!--End of custom markers-->
+    </agm-map>
   </div>
+
   <div class="places">
-    <div class="functionalButtons">
-      <button mat-raised-button>Save</button>
-      <button mat-raised-button>Show</button>
-      <button mat-raised-button>Delete</button>
-      <button mat-raised-button class="getLocation">
+    <div class="functionalButtonsGroup">
+      <div>
+        <button class="functionalButtons" mat-raised-button>Show</button>
+        <button class="functionalButtons" mat-raised-button>Save</button>
+        <button class="functionalButtons" mat-raised-button>Delete</button>
+      </div>
+      <button (click)="findMe()" mat-raised-button class="getLocation">
         <i class="material-icons">
           room
         </i>
       </button>
     </div>
+
     <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
+      <mat-expansion-panel *ngFor="let name of places">
+        <mat-expansion-panel-header (click)="showPlaces(name)">
           <mat-panel-title>
-            Pharmacies
+            {{ name }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngFor="let place of pharmacies">
+        <div *ngFor="let place of marksOfThePlaces">
           <h1 class="placeName">{{ place.name }}</h1>
           <p class="placeAddress">
-            <i>{{ place.vicinity }}</i>
+            {{ place.vicinity }}
           </p>
           <hr />
         </div>
       </mat-expansion-panel>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      ></mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Schools
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div *ngFor="let place of schools">
-          <h1 class="placeName">{{ place.name }}</h1>
-          <p class="placeAddress">
-            <i>{{ place.vicinity }}</i>
-          </p>
-          <hr />
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      ></mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Gas station
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div *ngFor="let place of gasStation">
-          <h1 class="placeName">{{ place.name }}</h1>
-          <p class="placeAddress">
-            <i>{{ place.vicinity }}</i>
-          </p>
-          <hr />
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      ></mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Restaurants
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div *ngFor="let place of restaurants">
-          <h1 class="placeName">{{ place.name }}</h1>
-          <p class="placeAddress">
-            <i>{{ place.vicinity }}</i>
-          </p>
-          <hr />
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel
-        (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false"
-      ></mat-expansion-panel>
     </mat-accordion>
   </div>
 </div>

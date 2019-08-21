@@ -10,3 +10,9 @@ export interface ILocation {
   lat: number;
   lng: number;
 }
+
+export interface IMarker {
+  lat: number;
+  lng: number;
+  draggable: boolean;
+}

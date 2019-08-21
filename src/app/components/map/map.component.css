@@ -21,14 +21,24 @@ agm-map {
   width: 20vw;
 }
 
+.functionalButtonsGroup {
+  display: flex;
+  flex-direction: row;
+  margin: 3%;
+}
+
 .functionalButtons {
-  align-self: center;
-  margin-bottom: 3%;
+  margin: 1%;
+  width: 100%;
 }
 
 .getLocation {
   color: #fafafa;
   background-color: #1890ff;
+  width: 70%;
+  align-self: center;
+  margin: 3%;
+  height: 100%;
 }
 
 .placeName {
@@ -40,7 +50,7 @@ agm-map {
   text-decoration: none;
 }
 
-.mat-expansion-panel-content.ng-trigger.ng-trigger-bodyExpansion.mat-expansion-panel-body {
-  height: 50vh;
+::ng-deep .mat-expansion-panel-body {
+  height: 40vh;
   overflow: auto;
 }
