@@ -30,25 +30,38 @@ export class MapComponent implements OnInit {
     this.getData();
   }
 
-  mapClicked($event: MouseEvent) {
+  mapClicked($event: any) {
     this.customMarkers.push({
-      // @ts-ignore
       lat: $event.coords.lat,
-      // @ts-ignore
       lng: $event.coords.lng,
       draggable: true
     });
+    this.isMyLocation = false;
+    if (this.customMarkers.length === 1) {
+      this.currentLocation.lat = this.customMarkers[0].lat;
+      this.currentLocation.lng = this.customMarkers[0].lng;
+      this.getData();
+    }
   }
 
-  // TODO: Fix this! Doesn't reassign a new coordinates
-  markerDragEnd(marker: IMarker, $event: MouseEvent) {
-    console.log($event.coords.lat, $event.coords.lng);
-    this.customMarkers.map(item =>
+  markerDragEnd(marker: IMarker, $event: any) {
+    this.customMarkers = this.customMarkers.map(item =>
       item.lat === marker.lat && item.lng === marker.lng
         ? { ...item, lat: $event.coords.lat, lng: $event.coords.lng }
         : item
     );
   }
+
+  removeMarker = (marker: IMarker) => {
+    this.customMarkers = this.customMarkers.filter(
+      item => item.lat !== marker.lat && item.lng !== marker.lng
+    );
+    if (this.customMarkers.length === 1) {
+      this.currentLocation.lat = this.customMarkers[0].lat;
+      this.currentLocation.lng = this.customMarkers[0].lng;
+      this.getData();
+    }
+  };
 
   save = () => {
     !this.customMarkers.length

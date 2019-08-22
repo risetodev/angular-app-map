@@ -19,9 +19,10 @@
       <!--Markers of the places>-->
       <agm-marker *ngIf="isPanelOpenState">
         <agm-marker
-          *ngFor="let place of marksOfThePlaces"
+          *ngFor="let place of marksOfThePlaces; let i = index"
           [latitude]="place.location.lat"
           [longitude]="place.location.lng"
+          [label]="(i + 1).toString()"
         >
         </agm-marker>
       </agm-marker>
@@ -35,6 +36,7 @@
           [latitude]="marker.lat"
           [longitude]="marker.lng"
           [markerDraggable]="marker.draggable"
+          (markerClick)="removeMarker(marker)"
           (dragEnd)="markerDragEnd(marker, $event)"
         >
         </agm-marker>
@@ -63,7 +65,7 @@
       </button>
     </div>
 
-    <mat-accordion>
+    <mat-accordion *ngIf="customMarkers.length === 1 || isMyLocation">
       <mat-expansion-panel
         (opened)="isPanelOpenState = true"
         (closed)="isPanelOpenState = false"
@@ -76,8 +78,8 @@
             {{ name }}
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngFor="let place of marksOfThePlaces">
-          <h1 class="placeName">{{ place.name }}</h1>
+        <div *ngFor="let place of marksOfThePlaces; let i = index">
+          <h1 class="placeName">{{ i + 1 }}) {{ place.name }}</h1>
           <p class="placeAddress">
             {{ place.vicinity }}
           </p>

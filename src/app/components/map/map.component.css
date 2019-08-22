@@ -36,6 +36,7 @@ agm-map {
   color: #fafafa;
   background-color: #1890ff;
   margin: 1% 2% 1% 2%;
+  width: 100%;
 }
 
 .placeName {
