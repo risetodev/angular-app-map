@@ -24,10 +24,12 @@ export class MapComponent implements OnInit {
   restaurants: IPlace[] = [];
   marksOfThePlaces: IPlace[] = [];
   customMarkers: IMarker[] = [];
+  isCustomMarkers = true;
 
   ngOnInit() {
     this.getData();
   }
+
   mapClicked($event: MouseEvent) {
     this.customMarkers.push({
       // @ts-ignore
@@ -38,18 +40,31 @@ export class MapComponent implements OnInit {
     });
   }
 
-  // TODO: Implement those functions
-  save = () => {};
-  show = () => {};
-  delete = () => {};
-  // TODO: Delete certain marker by second click
-
+  // TODO: Fix this! Doesn't reassign a new coordinates
   markerDragEnd(marker: IMarker, $event: MouseEvent) {
-    console.log("dragEnd", marker, $event);
+    console.log($event.coords.lat, $event.coords.lng);
     this.customMarkers.map(item =>
-      item.lat !== marker.lat && item.lng !== marker.lng ? marker : item
+      item.lat === marker.lat && item.lng === marker.lng
+        ? { ...item, lat: $event.coords.lat, lng: $event.coords.lng }
+        : item
     );
   }
+
+  save = () => {
+    !this.customMarkers.length
+      ? alert("Nothing to save")
+      : (this.isCustomMarkers = false);
+  };
+  show = () => {
+    !this.customMarkers.length
+      ? alert("Nothing to show")
+      : (this.isCustomMarkers = true);
+  };
+  delete = () => {
+    !this.customMarkers.length
+      ? alert("Nothing to delete")
+      : (this.customMarkers = []);
+  };
 
   findMe = () =>
     this.getLocation().then(location => {
@@ -59,35 +74,26 @@ export class MapComponent implements OnInit {
       this.isMyLocation = !this.isMyLocation;
     });
 
-  showPlaces = (place: string) => {
-    if (this.placesToShow !== place) {
-      switch (place) {
-        case "Pharmacies":
-          Object.assign(this.marksOfThePlaces, this.pharmacies);
-          this.placesToShow = place;
-          this.isPanelOpenState = true;
-          break;
-        case "Schools":
-          Object.assign(this.marksOfThePlaces, this.schools);
-          this.placesToShow = place;
-          this.isPanelOpenState = true;
-          break;
-        case "Gas stations":
-          Object.assign(this.marksOfThePlaces, this.gasStation);
-          this.placesToShow = place;
-          this.isPanelOpenState = true;
-          break;
-        case "Restaurants":
-          Object.assign(this.marksOfThePlaces, this.restaurants);
-          this.placesToShow = place;
-          this.isPanelOpenState = true;
-          break;
-        default:
-          Object.assign(this.marksOfThePlaces, []);
-          break;
-      }
-    } else if (this.placesToShow === place) {
-      this.isPanelOpenState = false;
+  showPlaces = (place: string, isShown: boolean) => {
+    if (this.placesToShow === place) {
+      this.isPanelOpenState = isShown;
+      return;
+    }
+    this.isPanelOpenState = true;
+    this.placesToShow = place;
+    switch (place) {
+      case "Pharmacies":
+        Object.assign(this.marksOfThePlaces, this.pharmacies);
+        break;
+      case "Schools":
+        Object.assign(this.marksOfThePlaces, this.schools);
+        break;
+      case "Gas stations":
+        Object.assign(this.marksOfThePlaces, this.gasStation);
+        break;
+      case "Restaurants":
+        Object.assign(this.marksOfThePlaces, this.restaurants);
+        break;
     }
   };
 

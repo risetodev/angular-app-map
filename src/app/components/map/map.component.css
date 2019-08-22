@@ -35,10 +35,7 @@ agm-map {
 .getLocation {
   color: #fafafa;
   background-color: #1890ff;
-  width: 70%;
-  align-self: center;
-  margin: 3%;
-  height: 100%;
+  margin: 1% 2% 1% 2%;
 }
 
 .placeName {

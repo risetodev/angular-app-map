@@ -12,7 +12,6 @@
         *ngIf="isMyLocation"
         [latitude]="currentLocation.lat"
         [longitude]="currentLocation.lng"
-        [label]="'Current location'"
       >
       </agm-marker>
       <!--End My location marker-->
@@ -29,17 +28,17 @@
       <!--End of markers-->
 
       <!--Custom markers>-->
-      <!--      <agm-marker *ngIf="isPanelOpenState">-->
-      <!--suppress TypeScriptValidateTypes -->
-      <agm-marker
-        *ngFor="let marker of customMarkers"
-        [latitude]="marker.lat"
-        [longitude]="marker.lng"
-        [markerDraggable]="marker.draggable"
-        (dragEnd)="markerDragEnd(marker, $event)"
-      >
+      <agm-marker *ngIf="isCustomMarkers">
+        <!--suppress TypeScriptValidateTypes -->
+        <agm-marker
+          *ngFor="let marker of customMarkers"
+          [latitude]="marker.lat"
+          [longitude]="marker.lng"
+          [markerDraggable]="marker.draggable"
+          (dragEnd)="markerDragEnd(marker, $event)"
+        >
+        </agm-marker>
       </agm-marker>
-      <!--      </agm-marker>-->
       <!--End of custom markers-->
     </agm-map>
   </div>
@@ -47,9 +46,15 @@
   <div class="places">
     <div class="functionalButtonsGroup">
       <div>
-        <button class="functionalButtons" mat-raised-button>Show</button>
-        <button class="functionalButtons" mat-raised-button>Save</button>
-        <button class="functionalButtons" mat-raised-button>Delete</button>
+        <button class="functionalButtons" mat-raised-button (click)="show()">
+          Show
+        </button>
+        <button class="functionalButtons" mat-raised-button (click)="save()">
+          Save
+        </button>
+        <button class="functionalButtons" mat-raised-button (click)="delete()">
+          Delete
+        </button>
       </div>
       <button (click)="findMe()" mat-raised-button class="getLocation">
         <i class="material-icons">
@@ -59,8 +64,14 @@
     </div>
 
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let name of places">
-        <mat-expansion-panel-header (click)="showPlaces(name)">
+      <mat-expansion-panel
+        (opened)="isPanelOpenState = true"
+        (closed)="isPanelOpenState = false"
+        *ngFor="let name of places"
+      >
+        <mat-expansion-panel-header
+          (click)="showPlaces(name, isPanelOpenState)"
+        >
           <mat-panel-title>
             {{ name }}
           </mat-panel-title>
