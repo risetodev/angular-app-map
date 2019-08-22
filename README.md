@@ -12,30 +12,30 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 # Login
 
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login.png)
 
 ## Login invalid
 
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login_invalid.png)
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login_invalid_.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login_invalid.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login_invalid_.png)
 
 ## Login valid
 
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login_valid.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/login_valid.png)
 
 # Map
 
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map1.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map1.png)
 
 ## Current location and nearest places. And, also, there is a capability to specify the marker and get nearest places
 
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map2.png)
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map3.png)
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map4.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map2.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map3.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/map4.png)
 
 # About
 
-![screenshots](https://https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/about.png)
+![screenshots](https://github.com/RiseToDev/angular-app-map/blob/master/screenshots/about.png)
 
 ## Code scaffolding
 
