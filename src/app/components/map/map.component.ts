@@ -74,9 +74,12 @@ export class MapComponent implements OnInit {
       : (this.isCustomMarkers = true);
   };
   delete = () => {
-    !this.customMarkers.length
-      ? alert("Nothing to delete")
-      : (this.customMarkers = []);
+    if (!this.customMarkers.length) {
+      alert("Nothing to delete");
+    } else {
+      this.customMarkers = [];
+      this.isCustomMarkers = true;
+    }
   };
 
   findMe = () =>

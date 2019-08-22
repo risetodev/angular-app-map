@@ -49,6 +49,11 @@ agm-map {
 }
 
 ::ng-deep .mat-expansion-panel-body {
-  height: 40vh;
+  height: 30vh;
   overflow: auto;
+}
+
+h3 {
+  margin: 0;
+  font-weight: 100;
 }
