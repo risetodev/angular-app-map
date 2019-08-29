@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { deleteSession } from "../../utils/localStorage/localStorage";
 import { routes } from "src/app/router/routes";
@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent {
+  @Input() userName: string;
   routes = routes;
   constructor(private router: Router) {}
   removeSession = async () => {

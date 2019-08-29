@@ -6,6 +6,6 @@
       [class.currentPage]="getCurrentPage(page.path)"
       >{{ page.path.charAt(0).toUpperCase() + page.path.slice(1) }}</a
     >
-    <a (click)="removeSession()">Sign out</a>
+    <a (click)="removeSession()">Sign out: {{userName}}</a>
   </nav>
 </header>

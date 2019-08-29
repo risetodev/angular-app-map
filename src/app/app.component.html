@@ -1,4 +1,4 @@
-<app-header *ngIf="showHeader()"></app-header>
+<app-header *ngIf="showHeader()" [userName]="userName"></app-header>
 <div class="flex-container" [style.height.%]="showHeader() ? '90' : '100'">
   <div class="row">
     <app-login *ngIf="!showHeader()"></app-login>

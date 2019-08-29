@@ -7,6 +7,7 @@ import { getAuthentication } from "./utils/localStorage/localStorage";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  userName = "user";
   showHeader() {
     return getAuthentication();
   }
