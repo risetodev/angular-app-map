@@ -1,7 +1,5 @@
-<app-header *ngIf="showHeader()" [userName]="userName"></app-header>
-<div class="flex-container" [style.height.%]="showHeader() ? '90' : '100'">
-  <div class="row">
-    <app-login *ngIf="!showHeader()"></app-login>
-    <router-outlet *ngIf="showHeader()"></router-outlet>
-  </div>
-</div>
+<app-layout [isLoggedIn]="showHeader()">
+  <app-header *ngIf="showHeader()" [userName]="userName"></app-header>
+  <app-login *ngIf="!showHeader()"></app-login>
+  <router-outlet *ngIf="showHeader()"></router-outlet>
+</app-layout>

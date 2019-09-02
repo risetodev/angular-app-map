@@ -1,7 +1,9 @@
-<form class="loginForm">
+<form (ngSubmit)="signIn()" class="loginForm">
   <!--Login input-->
   <mat-form-field class="input">
-    <input matInput placeholder="User" [formControl]="userValidation" />
+    <label>
+      <input matInput placeholder="User" [formControl]="userValidation" />
+    </label>
     <mat-error *ngIf="userValidation.hasError('pattern')">
       Please enter a valid login: user
     </mat-error>
@@ -13,13 +15,15 @@
 
   <!--Password input-->
   <mat-form-field class="input">
-    <input
-      [type]="hidePassword ? 'password' : 'text'"
-      type="password"
-      matInput
-      placeholder="Password"
-      [formControl]="passwordValidation"
-    />
+    <label>
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        type="password"
+        matInput
+        placeholder="Password"
+        [formControl]="passwordValidation"
+      />
+    </label>
     <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
       <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
@@ -33,10 +37,10 @@
   <!--End password input-->
 
   <button
+    type="submit"
     mat-flat-button
     class="submitButton"
     [disabled]="userValidation.invalid || passwordValidation.invalid"
-    (click)="signIn()"
   >
     Sign in
   </button>

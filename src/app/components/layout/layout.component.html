@@ -1,0 +1,6 @@
+<ng-content select="app-header"></ng-content>
+<div class="flex-container" [style.height.%]="isLoggedIn ? '90' : '100'">
+  <div class="row">
+    <ng-content></ng-content>
+  </div>
+</div>

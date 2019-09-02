@@ -1,11 +1,11 @@
 import { IUser } from "./types";
 
-export const getAuthentication = () =>
+export const getAuthentication = (): boolean =>
   !!JSON.parse(localStorage.getItem("user"));
 
-export const setAuthentication = (user: IUser) =>
+export const setAuthentication = (user: IUser): void =>
   localStorage.setItem("user", JSON.stringify(user));
 
-export const deleteSession = () => {
+export const deleteSession = (): void => {
   localStorage.removeItem("user");
 };

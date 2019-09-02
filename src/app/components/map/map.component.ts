@@ -10,27 +10,32 @@ import { GOOGLE_APIES, GOOGLE_MAPS_API_KEY } from "./API/API";
 })
 export class MapComponent implements OnInit {
   constructor(private http: HttpClient) {}
-  isPanelOpenState = false;
-  isMyLocation = false;
-  placesToShow: string;
-  currentLocation: ILocation = {
+  private isPanelOpenState = false;
+  private isMyLocation = false;
+  private placesToShow: string;
+  private currentLocation: ILocation = {
     lat: 46.469391,
     lng: 30.740883
   };
-  places: string[] = ["Pharmacies", "Schools", "Gas stations", "Restaurants"];
-  pharmacies: IPlace[] = [];
-  schools: IPlace[] = [];
-  gasStation: IPlace[] = [];
-  restaurants: IPlace[] = [];
-  marksOfThePlaces: IPlace[] = [];
-  customMarkers: IMarker[] = [];
-  isCustomMarkers = true;
+  private places: string[] = [
+    "Pharmacies",
+    "Schools",
+    "Gas stations",
+    "Restaurants"
+  ];
+  private pharmacies: IPlace[] = [];
+  private schools: IPlace[] = [];
+  private gasStation: IPlace[] = [];
+  private restaurants: IPlace[] = [];
+  private marksOfThePlaces: IPlace[] = [];
+  private customMarkers: IMarker[] = [];
+  private isCustomMarkers = true;
 
   ngOnInit() {
     this.getData();
   }
 
-  mapClicked($event: any) {
+  mapClicked = ($event: any): void => {
     this.customMarkers.push({
       lat: $event.coords.lat,
       lng: $event.coords.lng,
@@ -42,17 +47,17 @@ export class MapComponent implements OnInit {
       this.currentLocation.lng = this.customMarkers[0].lng;
       this.getData();
     }
-  }
+  };
 
-  markerDragEnd(marker: IMarker, $event: any) {
+  markerDragEnd = (marker: IMarker, $event: any): void => {
     this.customMarkers = this.customMarkers.map(item =>
       item.lat === marker.lat && item.lng === marker.lng
         ? { ...item, lat: $event.coords.lat, lng: $event.coords.lng }
         : item
     );
-  }
+  };
 
-  removeMarker = (marker: IMarker) => {
+  removeMarker = (marker: IMarker): void => {
     this.customMarkers = this.customMarkers.filter(
       item => item.lat !== marker.lat && item.lng !== marker.lng
     );
@@ -63,17 +68,19 @@ export class MapComponent implements OnInit {
     }
   };
 
-  save = () => {
+  save = (): void => {
     !this.customMarkers.length
       ? alert("Nothing to save")
       : (this.isCustomMarkers = false);
   };
-  show = () => {
+
+  show = (): void => {
     !this.customMarkers.length
       ? alert("Nothing to show")
       : (this.isCustomMarkers = true);
   };
-  delete = () => {
+
+  delete = (): void => {
     if (!this.customMarkers.length) {
       alert("Nothing to delete");
     } else {
@@ -83,14 +90,14 @@ export class MapComponent implements OnInit {
   };
 
   findMe = () =>
-    this.getLocation().then(location => {
+    this.getLocation().then((location: ILocation) => {
       this.currentLocation.lat = location.lat;
       this.currentLocation.lng = location.lng;
       this.getData();
       this.isMyLocation = !this.isMyLocation;
     });
 
-  showPlaces = (place: string, isShown: boolean) => {
+  showPlaces = (place: string, isShown: boolean): void => {
     if (this.placesToShow === place) {
       this.isPanelOpenState = isShown;
       return;
@@ -113,7 +120,7 @@ export class MapComponent implements OnInit {
     }
   };
 
-  getData = () => {
+  getData = (): void => {
     this.getPlaces("pharmacy", this.currentLocation).then(res =>
       Object.assign(this.pharmacies, res)
     );
@@ -128,8 +135,8 @@ export class MapComponent implements OnInit {
     );
   };
 
-  getLocation(): Promise<any> {
-    return new Promise((resolve, reject) => {
+  getLocation = (): Promise<ILocation> =>
+    new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
         resp => {
           resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude });
@@ -139,10 +146,9 @@ export class MapComponent implements OnInit {
         }
       );
     });
-  }
 
-  getPlaces = (place: string, center: ILocation) => {
-    return this.http
+  getPlaces = (place: string, center: ILocation): Promise<IPlace> =>
+    this.http
       .get<any>(
         `${GOOGLE_APIES}json?location=${center.lat},${center.lng}&radius=5000&type=${place}&key=${GOOGLE_MAPS_API_KEY}`
       )
@@ -160,5 +166,4 @@ export class MapComponent implements OnInit {
         }));
       })
       .catch(e => console.log(e));
-  };
 }

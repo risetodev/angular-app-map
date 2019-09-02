@@ -1,8 +1,7 @@
-import { Component, Output } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { setAuthentication } from "../../utils/localStorage/localStorage";
 import { Router } from "@angular/router";
-import { MapComponent } from "../map/map.component";
 
 @Component({
   selector: "app-login",
@@ -10,23 +9,22 @@ import { MapComponent } from "../map/map.component";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent {
-  hidePassword = true;
+  private hidePassword = true;
 
-  userValidation = new FormControl("", [
+  private userValidation = new FormControl("", [
     Validators.required,
     Validators.pattern("user")
   ]);
 
-  passwordValidation = new FormControl("", [
+  private passwordValidation = new FormControl("", [
     Validators.required,
     Validators.pattern("u_se_r")
   ]);
 
   constructor(private router: Router) {}
 
-  signIn = async () => {
-    await setAuthentication({ login: "user", date: new Date() });
-    await this.router.navigate(["/map"]);
-
+  private signIn = (): void => {
+    setAuthentication({ login: "user", date: new Date() });
+    this.router.navigate(["/map"]).then(error => console.log(error));
   };
 }

@@ -21,11 +21,6 @@ export const routes: Routes = [
     redirectTo: "map",
     canActivate: [OnlyLoggedInUsersGuard]
   },
-  // {
-  //   path: "login",
-  //   component: LoginComponent,
-  //   canActivate: [UsersGuard]
-  // },
   {
     path: "login",
     pathMatch: "full",

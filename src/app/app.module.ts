@@ -5,18 +5,16 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./router/app-routing.module";
 import { LoginComponent } from "./components/login/login.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MaterialModule } from "./utils/materialUI/material";
+import { MaterialModule } from "./utils/materialUI/materialUI.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MapComponent } from "./components/map/map.component";
 import { AboutComponent } from "./components/about/about.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { HeaderComponent } from "./components/header/header.component";
-import {
-  OnlyLoggedInUsersGuard,
-  UsersGuard
-} from "./services/guards/auth-guard.service";
+import { OnlyLoggedInUsersGuard } from "./services/guards/auth-guard.service";
 import { AgmCoreModule } from "@agm/core";
 import { HttpClientModule } from "@angular/common/http";
+import { LayoutComponent } from "./components/layout/layout.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +23,8 @@ import { HttpClientModule } from "@angular/common/http";
     MapComponent,
     AboutComponent,
     PageNotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +38,7 @@ import { HttpClientModule } from "@angular/common/http";
     }),
     HttpClientModule
   ],
-  providers: [OnlyLoggedInUsersGuard, UsersGuard],
+  providers: [OnlyLoggedInUsersGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

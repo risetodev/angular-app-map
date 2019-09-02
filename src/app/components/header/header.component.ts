@@ -1,8 +1,7 @@
 import { Component, Input } from "@angular/core";
-
 import { deleteSession } from "../../utils/localStorage/localStorage";
 import { routes } from "src/app/router/routes";
-import { Router } from "@angular/router";
+import { Router, Routes } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -11,13 +10,17 @@ import { Router } from "@angular/router";
 })
 export class HeaderComponent {
   @Input() userName: string;
-  routes = routes;
+
+  private routes: Routes = routes;
+
   constructor(private router: Router) {}
-  removeSession = async () => {
-    await deleteSession();
-    await this.router.navigate(["login"]);
+
+  private removeSession = (): void => {
+    deleteSession();
+    this.router.navigate(["login"]).then(error => console.log(error));
   };
-  getCurrentPage = (currentPage: string) => {
+
+  private getCurrentPage = (currentPage: string): boolean => {
     return window.location.href.endsWith(currentPage);
   };
 }
